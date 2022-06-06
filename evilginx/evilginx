@@ -1,0 +1,1 @@
+docker exec -it evilginx /opt/evilginx/bin/evilginx -p /opt/evilginx/phishlets/ -developer

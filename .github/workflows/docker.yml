@@ -1,0 +1,28 @@
+name: Docker
+
+on:
+  push:
+    branches:    
+      - 'main'
+    paths:
+      - '.docker-build-changelog'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker login
+        env:
+          DOCKER_PASSWORD: ${{ secrets.GIT_TOKEN_MAIN }}  
+        run: docker login ghcr.io -u thirdbyte -p $DOCKER_PASSWORD
+      - name: docker build
+        run: |
+          docker build -t ghcr.io/thirdbyte/pacu:evilginx ./evilginx/
+          docker build -t ghcr.io/thirdbyte/pacu:gophish ./gophish/
+          docker build -t ghcr.io/thirdbyte/pacu:nginx-proxy ./nginx-proxy/
+      - name: docker push
+        run: |
+          docker push ghcr.io/thirdbyte/pacu:evilginx
+          docker push ghcr.io/thirdbyte/pacu:gophish
+          docker push ghcr.io/thirdbyte/pacu:nginx-proxy
