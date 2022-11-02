@@ -114,6 +114,7 @@ post-evilginx() {
     tmux send-keys -t pacu "lures get-url 0" Enter
     echo "*****************************************************************"
     echo -n "Lure  : "
+    sleep 3
     tmux capture-pane -pt pacu -S -5 | grep -A2 get-url | tail -n 1
     echo "*****************************************************************"
 
