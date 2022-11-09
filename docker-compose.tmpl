@@ -7,7 +7,7 @@ services:
             ports:
               - "80:80"
               - "443:443"
-            hostname: 'nginx-proxy'
+#            hostname: 'nginx-proxy'
             container_name: nginx-proxy
             volumes:
               - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -20,7 +20,7 @@ services:
 
   evilginx:
             image: evilginx
-            hostname: 'evilginx'
+ #           hostname: 'evilginx'
             container_name: evilginx
             init: true
             tty: true
@@ -37,7 +37,7 @@ services:
 
   gophish:
             image: gophish
-            hostname: 'gophish'
+  #          hostname: 'gophish'
             container_name: gophish
             init: true
             volumes:
